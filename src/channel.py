@@ -26,7 +26,9 @@ class Channel:
     def channel_id(self):
         return self.__channel_id
 
-
+    @classmethod
+    def get_service(cls):
+        return cls.youtube
 
 
 
