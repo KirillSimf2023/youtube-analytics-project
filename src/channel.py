@@ -31,6 +31,20 @@ class Channel:
         return cls.youtube
 
 
+    def to_json(self, file_name):
+        result_dict = {}
+        result_dict['id'] = self.__channel_id
+        result_dict['title'] = self.title
+        result_dict['description'] = self.description
+        result_dict['url'] = self.url
+        result_dict['subscriber_count'] = self.subscriber_count
+        result_dict['video_count'] = self.video_count
+        result_dict['view_count'] = self.view_count
+
+        with open(file_name, 'w', encoding='UTF-8') as file:
+            data = json.dumps(result_dict, ensure_ascii=False)
+            file.write(data)
+
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
