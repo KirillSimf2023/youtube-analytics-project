@@ -25,6 +25,26 @@ class Channel:
     def __str__(self):
         return f'{self.title} ({self.url})'
 
+    '''
+    print(moscowpython > highload)  # False
+    print(moscowpython >= highload)  # False
+    print(moscowpython < highload)  # True
+    print(moscowpython <= highload)  # True
+    print(moscowpython == highload)  # False
+    '''
+
+    def __add__(self, other):
+        '''Метод __add__ реализует возможность сложения двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count + other.subscriber_count
+
+
+    def __sub__(self, other):
+        '''Метод __sub__ реализует возможность вычитания двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count - other.subscriber_count
+
+
+
+
 
     @property
     def channel_id(self):
