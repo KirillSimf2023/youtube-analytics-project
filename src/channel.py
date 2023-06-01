@@ -22,6 +22,46 @@ class Channel:
         self.view_count = int(channel['items'][0]['statistics']['viewCount'])
 
 
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+
+    def __add__(self, other):
+        '''Метод __add__ реализует возможность сложения двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count + other.subscriber_count
+
+
+    def __sub__(self, other):
+        '''Метод __sub__ реализует возможность вычитания двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count - other.subscriber_count
+
+
+    def __gt__(self, other):
+        '''Метод __gt__ реализует возможность операции сравнения «больше» (self > other) двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count > other.subscriber_count
+
+
+    def __lt__(self, other):
+        '''Метод __lt__ реализует возможность операции сравнения «меньше» ( self < other ) двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count < other.subscriber_count
+
+
+    def __ge__(self, other):
+        '''Метод __ge__ реализует возможность операции сравнения «больше или равно» ( self >= other ) двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count >= other.subscriber_count
+
+
+    def __le__(self, other):
+        '''Метод __le__ реализует возможность операции сравнения «меньше или равно» ( self <= other ) двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count <= other.subscriber_count
+
+
+    def __eq__(self, other):
+        '''Метод __eq__ реализует возможность операции сравнения «равенства» ( self == other ) двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count == other.subscriber_count
+
+
+
     @property
     def channel_id(self):
         return self.__channel_id
