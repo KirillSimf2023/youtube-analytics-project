@@ -43,6 +43,16 @@ class Channel:
         return self.subscriber_count - other.subscriber_count
 
 
+    def __gt__(self, other):
+        '''Метод __sub__ реализует возможность операции сравнения «больше» (self > other) двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count > other.subscriber_count
+
+
+    def __lt__(self, other):
+        '''Метод __sub__ реализует возможность операции сравнения «меньше» ( self < other ) двух экземпляров класса по количеству подписчиков'''
+        return self.subscriber_count < other.subscriber_count
+
+
 
 
 
