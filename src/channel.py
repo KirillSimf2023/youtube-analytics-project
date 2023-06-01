@@ -22,6 +22,10 @@ class Channel:
         self.view_count = int(channel['items'][0]['statistics']['viewCount'])
 
 
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+
     @property
     def channel_id(self):
         return self.__channel_id
