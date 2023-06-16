@@ -1,7 +1,5 @@
-import datetime
 import os
 from datetime import timedelta
-
 import isodate
 from googleapiclient.discovery import build
 
@@ -20,15 +18,16 @@ class PlayList():
         '''
         self.id_PlayList = id_PlayList
         self.url = f"https://www.youtube.com/playlist?list={id_PlayList}"
+        # получаем информацию о плейлисте
         playlist_info = self.__youtube.playlists().list(part="snippet", id=self.id_PlayList).execute()
         self.title = playlist_info['items'][0]['snippet']['title']
         self.current_playlist = self.get_playlist()
 
     def __repr__(self):
-        pass
+        return f'Title:{self.title}, ID:{self.id_PlayList}, URL:{self.url}, CountVideo:{len(self.current_playlist)}'
 
     def __str__(self):
-        pass
+        return f'Title:{self.title}, URL:{self.url}'
 
     @property
     def total_duration(self) -> timedelta:
