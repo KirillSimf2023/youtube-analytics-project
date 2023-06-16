@@ -55,15 +55,14 @@ class PlayList():
         :return:ссылку на самое популярное видео из плейлиста
         '''
 
-        url_result = 'Нет видео в плейлисте'
-        max_like = 0
+        url_result: str = 'Нет видео в плейлисте'
+        max_like: int = 0
 
         for item in self.current_playlist:
             if int(item['likeCount']) > max_like:
                 max_like = int(item['likeCount'])
                 url_result = item['url']
-        print(max_like)
-        print(url_result)
+
         return url_result
 
     def get_playlist(self) -> list:
@@ -71,24 +70,19 @@ class PlayList():
         Функция получает информацию о всех виде по нашему ID плэйлиста
         :return: список словарей, с детальной информацией по каждому видео
         '''
+
+        # итоговый список словарей о детальной информации по всем видео
         current_playlist=[]
+
+        # получаем все видео в плейлисте
         playlist_video = self.__youtube.playlistItems().list(playlistId=self.id_PlayList,
                                                  part='contentDetails',
                                                  maxResults=50,
                                                  ).execute()
 
-        # print(playlist_video)
-        # return None
-
+        # по каждому видео получаем детальную информацию
         for item in playlist_video['items']:
-            # current_playlist.append(item)
-            # print(item['contentDetails']['videoId'])
             video_details = self.__youtube.videos().list(part='contentDetails,statistics', id=item['contentDetails']['videoId']).execute()
-            # print(video_details)
-            # print(video_details['items'][0]['contentDetails']['duration'])
-            # print(video_details['items'][0]['statistics']['likeCount'])
-            # print(f"https://youtu.be/{item['contentDetails']['videoId']}")
-
             current_playlist.append({'id': item['contentDetails']['videoId'],
                                      "duration": video_details['items'][0]['contentDetails']['duration'],
                                      'likeCount': video_details['items'][0]['statistics']['likeCount'],
