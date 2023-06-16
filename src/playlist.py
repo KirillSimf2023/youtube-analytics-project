@@ -38,11 +38,12 @@ class PlayList():
         (обращение как к свойству, использовать @property)
         :return: суммарной длительность плейлиста
         '''
+
+        # длительность с дефолтным значением.
         duration: timedelta = timedelta(0,0,0,0,0)
 
         for item in self.current_playlist:
             duration += isodate.parse_duration(item['duration'])
-        print(duration)
 
         return duration
 
